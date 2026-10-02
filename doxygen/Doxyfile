@@ -1,0 +1,46 @@
+# Shared Doxygen settings. scripts/prepare.mjs appends the per-project options
+# (name, version, inputs, output, stylesheets, log) and runs `doxygen -`.
+
+PROJECT_BRIEF          = "C++ API Reference"
+HTML_OUTPUT            = cpp-api
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+FILE_PATTERNS          = *.h *.hpp *.md
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */3rdParty/* */build/* */build-*/*
+FULL_PATH_NAMES        = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+JAVADOC_AUTOBRIEF      = YES
+BUILTIN_STL_SUPPORT    = YES
+
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_COLORSTYLE        = LIGHT
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+USE_MATHJAX            = YES
+MATHJAX_VERSION        = MathJax_3
+
+# Graphs are limited to class hierarchies to keep build time and output size manageable.
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+DOT_NUM_THREADS        = 0
+DOT_GRAPH_MAX_NODES    = 50
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = NO
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+DIRECTORY_GRAPH        = NO
+GROUP_GRAPHS           = NO
+
+NUM_PROC_THREADS       = 0
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO

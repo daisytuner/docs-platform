@@ -1,0 +1,53 @@
+{
+  "name": "daisytuner-docs-platform",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "prepare-content": "node scripts/prepare.mjs",
+    "start": "npm run prepare-content && docusaurus start",
+    "build": "npm run prepare-content && docusaurus build",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear && rm -rf generated",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/faster": "3.10.2",
+    "@docusaurus/plugin-content-docs": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@docusaurus/theme-mermaid": "3.10.2",
+    "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "docusaurus-plugin-typedoc": "^1.4.3",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typedoc": "^0.28.20",
+    "typedoc-plugin-markdown": "^4.13.1",
+    "typescript": "~6.0.2"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0"
+  }
+}

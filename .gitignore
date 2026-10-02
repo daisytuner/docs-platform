@@ -1,0 +1,8 @@
+/node_modules
+/build
+/generated
+/source
+.docusaurus
+.cache-loader
+.DS_Store
+npm-debug.log*

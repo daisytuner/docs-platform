@@ -1,0 +1,14 @@
+*
+!package.json
+!package-lock.json
+!tsconfig.json
+!docusaurus.config.ts
+!sidebars.ts
+!nginx.conf
+!scripts
+!src
+!static
+!doxygen
+!source
+source/**/node_modules
+source/**/build
