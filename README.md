@@ -31,6 +31,89 @@ builds. It holds no project list and no credentials.
 To add a project, add those two files to its repo (copy them from an existing project). Nothing
 in this repo changes.
 
+## Writing docs
+
+All content lives in the project's repo; you never need to change this repo to add pages.
+
+### Add a page or section
+
+Create Markdown files under the project's `docsDir` (usually `docs/`). Every folder becomes a
+sidebar section, every file a page:
+
+```
+docs/
+  tutorials/
+    _category_.json        {"label": "Tutorials", "position": 5}
+    offload-to-gpu.md
+    offload-to-gpu/        images used by that page
+      timeline.png
+```
+
+Start each page with front matter:
+
+```markdown
+---
+title: Offload a Loop to the GPU
+sidebar_position: 1
+description: Shown in search results and link previews
+---
+```
+
+- Pages and sections with a `position` come first, sorted by number; others follow by name.
+  `_category_.json` also accepts `"collapsed": false` to show a section expanded.
+- Without `title`, the first `# Heading` is used.
+- `.md` files are plain CommonMark. Use `.mdx` only when you need React components (e.g. tabs).
+
+### Markdown features
+
+| Need | Write |
+| ---- | ----- |
+| Link to another page | Relative path to its file: `[Targets](../using-docc/targets.md)`. Checked at build time. |
+| Link to the C++ API | `[StructuredSDFG](cpp-api:classsdfg_1_1StructuredSDFG.html)` (works on public and internal sites) |
+| Link to a TypeScript API | Relative path into `ts-api/<name>/`, or use the navbar's API menu |
+| Link to other repo files | Full GitHub URL; only `docsDir` and `include` files are part of the site |
+| Image | File next to the page, relative path: `![Timeline](./offload-to-gpu/timeline.png)` |
+| Callout | `:::note`, `:::tip`, `:::info`, `:::warning`, `:::danger`; custom title: `:::tip[Title]` |
+| Diagram | A ` ```mermaid ` code block |
+| Code | Fenced block with a language; `cmake`, `bash` and `json` are enabled in addition to the defaults |
+
+Public projects publish everything under `docsDir` to the internet; keep internal details out.
+
+### Publish an existing file
+
+To publish a file that lives elsewhere in the repo (e.g. a README or a tutorial folder), add it
+to `include` in `docs.config.json` instead of copying it:
+
+```json
+{"src": "tutorial/my_target/README.md", "dest": "tutorials/my-target.md", "title": "Writing a Target", "sidebarPosition": 2}
+```
+
+Its first `# Heading` is replaced by `title`, its relative links point to GitHub, and "Edit this
+page" opens the original. Add `src` to the paths of the repo's `docs.yml` so changes to it trigger
+a build.
+
+### API reference
+
+API pages are generated from code comments; no Markdown is needed:
+
+- **C++**: Doxygen comments (`/** ... */`, `///`) in the folders listed in `doxygen.inputs`.
+- **TypeScript**: TSDoc comments (`/** ... @param ... @returns */`) in the packages listed in
+  `typedoc`. Doxygen tags such as `@brief` are not recognized there.
+
+New header folders or packages go into `docs.config.json` and the paths of `docs.yml`.
+
+### Preview, review and publish
+
+1. Preview with `DOCS_SOURCE=<project checkout> npm start` (see [Develop locally](#develop-locally)).
+   Run `npm run build` once before opening a PR; it fails on broken links like CI does.
+2. Open a PR in the project's repo. Its **Docs** check builds and smoke-tests the site; typical
+   failures are broken links, an invalid `docs.config.json` (the error names the field) and
+   missing Doxygen inputs.
+3. After the merge to `main`, the site redeploys automatically.
+
+To feature a page on the start page, add it to `landing` in `docs.config.json`:
+`{"title": "Tutorials", "description": "Step-by-step guides", "doc": "tutorials/offload-to-gpu"}`.
+
 ## Develop locally
 
 Requires Node 24, `doxygen` and `graphviz`.
