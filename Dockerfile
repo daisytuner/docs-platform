@@ -30,6 +30,10 @@ RUN npm ci --no-fund --no-audit
 
 COPY . .
 ARG DOCS_NOINDEX=true
+# Version passed by the caller (build-project.yml `version` input); read by scripts/prepare.mjs, overrides
+# versionFile. A build arg rather than a fetch during the build: a new value invalidates the cached
+# `npm run build` layer even when the source is unchanged (e.g. a release that adds no commit).
+ARG DOCS_VERSION=
 ENV DOCS_SOURCE=source DOCS_NOINDEX=${DOCS_NOINDEX}
 RUN npm run build \
  && base="$(node --input-type=module -e "import {baseUrl} from './scripts/config.mjs'; console.log(baseUrl)")" \
