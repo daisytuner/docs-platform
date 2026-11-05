@@ -15,6 +15,7 @@ builds. It holds no project list and no credentials.
    | `visibility` | `public`: served under `/<id>/` (e.g. docs.daisytuner.com/docc via Firebase Hosting). `internal`: served at `/`, never indexed. |
    | `url` | Address of the deployed site |
    | `startDoc` | Doc id the "Read the docs" button opens |
+   | `versionFile` | Repo file whose content is shown as the version in the footer and the C++ API header. The workflow's `version` input overrides it. |
    | `docsDir` | Markdown folder. The sidebar follows the folder layout; order pages with `sidebar_position` front matter and folders with `_category_.json` (`label`, `position`). `.md` is CommonMark, `.mdx` is MDX. |
    | `include` | Single files elsewhere in the repo (e.g. a README) published as pages; relative links are rewritten to GitHub |
    | `doxygen.inputs` | C++ header folders, published at `cpp-api/`. Link to it from Markdown with `[C++ API](cpp-api:index.html)`. |
@@ -27,6 +28,8 @@ builds. It holds no project list and no credentials.
    [build-project.yml](.github/workflows/build-project.yml) on PRs (build only) and on `main`,
    nightly and manual runs (with `export-image: true`), then deploys the exported image with the
    repo's own Google Cloud credentials. The shared workflow never receives credentials.
+   A project whose version is in no repo file (e.g. docc, whose patch number comes from the release
+   ledger) looks it up itself and passes it as the `version` input.
 
 To add a project, add those two files to its repo (copy them from an existing project). Nothing
 in this repo changes.

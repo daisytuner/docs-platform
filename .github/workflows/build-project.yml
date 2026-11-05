@@ -17,6 +17,10 @@ on:
         description: "Upload the image as the artifact named by the `artifact` output"
         type: boolean
         default: false
+      version:
+        description: "Version shown in the footer and API header (e.g. the latest release); overrides versionFile"
+        type: string
+        default: ""
     outputs:
       project:
         description: "Project id from docs.config.json"
@@ -91,7 +95,10 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: platform
-          build-args: DOCS_NOINDEX=${{ vars.DOCS_NOINDEX || 'true' }}
+          # Keep in sync with "Export Doxygen warnings"; different args would miss the cache there.
+          build-args: |
+            DOCS_NOINDEX=${{ vars.DOCS_NOINDEX || 'true' }}
+            DOCS_VERSION=${{ inputs.version }}
           tags: docs:build
           load: true
           cache-from: type=gha,scope=docs-${{ steps.config.outputs.project }}
@@ -110,7 +117,9 @@ jobs:
         with:
           context: platform
           target: artifacts
-          build-args: DOCS_NOINDEX=${{ vars.DOCS_NOINDEX || 'true' }}
+          build-args: |
+            DOCS_NOINDEX=${{ vars.DOCS_NOINDEX || 'true' }}
+            DOCS_VERSION=${{ inputs.version }}
           outputs: type=local,dest=ci-artifacts
           cache-from: type=gha,scope=docs-${{ steps.config.outputs.project }}
 

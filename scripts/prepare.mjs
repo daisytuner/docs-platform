@@ -108,7 +108,9 @@ rmSync(generatedDir, {recursive: true, force: true});
 const src = sourceDir;
 const info = {
   commit: git(src, 'rev-parse', '--short=8', 'HEAD'),
-  version: project.versionFile ? readFileSync(join(src, project.versionFile), 'utf8').trim() : undefined,
+  // A version passed by the caller (DOCS_VERSION build arg, e.g. the latest release, which no repo file
+  // records) takes precedence over versionFile.
+  version: process.env.DOCS_VERSION || (project.versionFile ? readFileSync(join(src, project.versionFile), 'utf8').trim() : undefined),
 };
 
 mkdirSync(contentDir, {recursive: true});

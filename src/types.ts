@@ -24,6 +24,7 @@ export type Project = {
   repo: string;
   visibility: 'public' | 'internal';
   docsDir?: string;
+  /** Repo file holding the version shown in the footer and API header; the build's `version` input overrides it. */
   versionFile?: string;
   include?: Include[];
   doxygen?: {inputs: string[]};
