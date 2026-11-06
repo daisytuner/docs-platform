@@ -231,11 +231,11 @@ body {
 }
 
 .navbar__toggle,
-.navbar .clean-btn {
+.navbar .clean-btn:not(.navbar-sidebar__back) {
   color: var(--dt-paper);
 }
 
-.navbar .clean-btn:hover {
+.navbar .clean-btn:not(.navbar-sidebar__back):hover {
   background: rgba(247, 248, 247, 0.08);
   color: var(--dt-mint);
 }
