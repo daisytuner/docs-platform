@@ -62,7 +62,7 @@ export default function Footer(): ReactNode {
               {col.title && <strong>{col.title}</strong>}
               {col.items.map((l) =>
                 l.href ? (
-                  <Link key={l.label} href={l.href}>
+                  <Link key={l.label} href={l.href} target={l.href.startsWith('pathname:') ? '_self' : undefined}>
                     {l.label}
                   </Link>
                 ) : (
