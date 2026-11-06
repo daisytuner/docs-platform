@@ -433,7 +433,7 @@ body {
 }
 
 .markdown a:hover {
-  color: var(--accent);
+  color: var(--fg-1);
 }
 
 .markdown a.hash-link {
