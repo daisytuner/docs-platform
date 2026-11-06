@@ -1,38 +1,94 @@
 .hero {
-  padding: 5rem 0 4rem;
-  text-align: center;
-  background: var(--ifm-color-emphasis-100);
+  position: relative;
+  padding: clamp(56px, 6vw, 96px) 0 clamp(48px, 5vw, 80px);
+  background: var(--chrome-bg);
+  color: var(--dt-paper);
+}
+
+[data-theme='dark'] .hero {
+  border-bottom: 1px solid var(--dt-ink-80);
 }
 
 .title {
-  font-size: 3.5rem;
-  margin-bottom: 0.5rem;
+  margin: 0 0 14px;
+  max-width: 900px;
+  font-size: clamp(36px, 4.6vw, 64px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+  text-wrap: balance;
+  color: var(--dt-paper);
 }
 
 .tagline {
-  font-size: 1.25rem;
-  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #c4ccd4;
 }
 
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.hero :global(.button--primary) {
+  --ifm-button-background-color: var(--dt-paper);
+  --ifm-button-border-color: var(--dt-paper);
+  --ifm-button-color: var(--dt-ink);
+}
+
+.hero :global(.button--primary:hover) {
+  --ifm-button-background-color: #fff;
+  --ifm-button-border-color: #fff;
+  color: var(--dt-ink);
+}
+
+.hero :global(.button--secondary) {
+  --ifm-button-background-color: #fff;
+  --ifm-button-border-color: #fff;
+  --ifm-button-color: var(--dt-ink);
+}
+
+.hero :global(.button--secondary:hover) {
+  --ifm-button-background-color: var(--dt-paper);
+  --ifm-button-border-color: var(--dt-paper);
+  color: var(--dt-ink);
 }
 
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   height: 100%;
-  padding: 1.5rem;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: var(--ifm-card-border-radius);
-  color: inherit;
+  padding: 28px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: 12px;
+  color: var(--fg-1);
+  transition: border-color 160ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .card:hover {
-  border-color: var(--ifm-color-primary);
+  border-color: var(--accent);
   text-decoration: none;
-  color: inherit;
+  color: var(--fg-1);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--fg-2);
 }
