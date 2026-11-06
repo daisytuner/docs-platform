@@ -1,0 +1,107 @@
+.footer {
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 32px clamp(48px, 8vw, 140px);
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dt-paper);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.logo:hover {
+  color: var(--dt-paper);
+  text-decoration: none;
+}
+
+.logo img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.social {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social a {
+  display: flex;
+  opacity: 0.75;
+  transition: opacity 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.social a:hover {
+  opacity: 1;
+}
+
+.social img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.copy {
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ifm-footer-link-color);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.col strong {
+  margin-bottom: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dt-paper);
+}
+
+.col a {
+  font-size: 15px;
+  color: var(--ifm-footer-link-color);
+  transition: color 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.col a:hover {
+  color: var(--dt-mint);
+  text-decoration: none;
+}
+
+/* Hide Docusaurus' external-link arrow; the website footer has none. */
+.col a svg {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .row {
+    flex-direction: column;
+  }
+}

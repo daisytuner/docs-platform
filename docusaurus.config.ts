@@ -159,7 +159,7 @@ const config: Config = {
       title: project.title,
       logo: {
         alt: 'Daisytuner',
-        src: 'img/logo.svg',
+        src: 'img/daisytuner-mark.png',
       },
       items: navbarItems,
     },
