@@ -503,13 +503,13 @@ a code {
 
 /* Tables */
 .markdown table {
-  display: table;
+  display: block;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--border-hairline);
   border-radius: 8px;
-  overflow: hidden;
+  overflow-x: auto;
   font-size: 14px;
 }
 
